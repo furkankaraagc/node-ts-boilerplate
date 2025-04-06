@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { loginHandler, refreshTokenHandler } from './user.controller';
+
+import { loginHandler, refreshTokenHandler } from '@/modules/user/user.controller';
 
 const userRouter = Router();
 

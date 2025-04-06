@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "target": "es2016",
+    "target": "es2018",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     // "rootDir": "./src",
@@ -14,5 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }
