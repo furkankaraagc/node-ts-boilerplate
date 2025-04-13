@@ -1,6 +1,7 @@
+import { Request, Response } from 'express';
+
 import { mockUsers } from '@/constants/mockData';
 import { signJWT, verifyJWT } from '@/utils/jwt';
-import { Request, Response } from 'express';
 
 export const loginHandler = (req: Request, res: Response) => {
   // const params = req.params;
@@ -22,8 +23,15 @@ export const loginHandler = (req: Request, res: Response) => {
 
   res.cookie('refreshToken', refreshToken, {
     httpOnly: true,
-    secure: true,
-    sameSite: 'strict',
+    // secure: true, // bu kisim localde false olabilir prod da true olmali
+    // sameSite: 'strict',
+    // sameSite: 'lax',
+  });
+  res.cookie('accessToken', accessToken, {
+    httpOnly: true,
+    // secure: true, // bu kisim localde false olabilir prod da true olmali
+    // sameSite: 'strict',
+    // sameSite: 'lax',
   });
   res.json({ accessToken });
 };
@@ -45,4 +53,11 @@ export const refreshTokenHandler = (req: Request, res: Response) => {
   const accessToken = signJWT(safePayload, 60 * 5); // 5 minutes
 
   res.status(200).json({ accessToken });
+};
+export const meHandler = (req: Request, res: Response) => {
+  //@ts-ignore
+  const username = req.user.username;
+  //@ts-ignore
+  const user = mockUsers.find((user) => user.username === username);
+  res.status(200).json(user);
 };

@@ -1,9 +1,10 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import { corsConfig } from './utils/cors-config';
 import cookieParser from 'cookie-parser';
-import { verifyUser } from './middleware/verify-user';
-import userRouter from './modules/user/user.router';
+import cors from 'cors';
+import express, { Request, Response } from 'express';
+
+import { verifyUser } from '@/middleware/verify-user';
+import userRouter from '@/modules/user/user.router';
+import { corsConfig } from '@/utils/cors-config';
 
 const app = express();
 
