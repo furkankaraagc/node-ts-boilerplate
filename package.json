@@ -8,7 +8,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "prettier": "prettier . --write",
     "start": "node ./dist/server.js",
-    "dev": "nodemon -r tsconfig-paths/register src/server.ts",
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node --transpile-only -r tsconfig-paths/register src/server.ts\"",
     "build": "tsc --build"
   },
   "keywords": [],
@@ -18,9 +18,11 @@
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "loadsh": "^0.0.4"
+    "loadsh": "^0.0.4",
+    "pg": "^8.15.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.8",
