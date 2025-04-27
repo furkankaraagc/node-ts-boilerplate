@@ -13,13 +13,13 @@ const testDbConnection = async (retries = 5, delay = 2000): Promise<void> => {
   while (retries > 0) {
     try {
       const res = await pool.query('SELECT NOW()');
-      console.log('✅ PostgreSQL bağlantısı başarılı:', res.rows[0].now);
+      console.log('✅ PostgreSQL connection successful:', res.rows[0].now);
       return;
     } catch (err) {
-      console.error(`❌ Bağlantı hatası, tekrar deneniyor (${6 - retries}/5):`, err.message);
+      console.error(`❌ Connection error, retrying (${6 - retries}/5):`, err.message);
       retries--;
       if (retries === 0) {
-        console.error('🔴 Tüm denemeler başarısız oldu. Sunucu durduruluyor.');
+        console.error('🔴 All attempts failed. Stopping the server.');
         process.exit(1);
       }
       await new Promise((resolve) => setTimeout(resolve, delay));
